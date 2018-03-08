@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Auth.Core;
 using Auth.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using Auth.Extensions;
 
-namespace Auth.Services
+namespace Auth.Persistence.Services
 {
     public interface IUsersService
     {

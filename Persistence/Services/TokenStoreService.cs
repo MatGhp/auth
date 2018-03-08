@@ -11,8 +11,10 @@ using Auth.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Auth.Core;
 
-namespace ASPNETCore2JwtAuthentication.Services
+
+namespace Auth.Persistence.Services
 {
     public interface ITokenStoreService
     {

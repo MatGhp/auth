@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using  Auth.Core.Models;
+using Auth.Core.Models;
 using Auth.Core;
 
 namespace Auth.Persistence

@@ -1,4 +1,4 @@
-namespace ASPNETCore2CookieAuthentication.Services
+namespace Auth.Persistence.Services
 {
     public static class CustomRoles
     {
