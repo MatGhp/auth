@@ -142,6 +142,19 @@ namespace auth
                 app.UseExceptionHandler("/Home/Error");
             }
 
+           
+            app.UseAuthentication();
+
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var dbInitializer = scope.ServiceProvider.GetService<IDbInitializerService>();
+                dbInitializer.Initialize();
+                dbInitializer.SeedData();
+            }
+
+            app.UseStatusCodePages();
+            app.UseDefaultFiles(); // so index.html is not required
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
@@ -149,11 +162,14 @@ namespace auth
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
             });
+
+            // // catch-all handler for HTML5 client routes - serve index.html
+            // app.Run(async context =>
+            // {
+            //     context.Response.ContentType = "text/html";
+            //     await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            // });
         }
     }
 }
